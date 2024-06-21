@@ -28,5 +28,21 @@ else
         curl -sSL https://install.python-poetry.org | python3 -
         export PATH="/home/ubuntu/.local/bin:$PATH"
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+    fi   
+
+    if ! command -v pip3 &> /dev/null
+    then
+        echo "pip3 could not be found"
+        echo "Installing pip3..."
+        sudo apt-get update -y
+
+        sudo apt-get install python3-pip
+        pip3 install uvicorn
+        cd autogpt/setup 
+        POETRY_INSTALLER_PARALLEL=false
+        poetry install --no-interaction --extras benchmark
+        cd ../../
+        cd rnd/autogpt_server
+        poetry install --no-interaction
     fi
 fi
