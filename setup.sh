@@ -36,13 +36,12 @@ else
         echo "Installing pip3..."
         sudo apt-get update -y
 
-        sudo apt-get install python3-pip
+        sudo apt-get install python3-pip -y
         pip3 install uvicorn
-        cd autogpt/setup 
+        cd $HOME/AutoGPT/autogpt/setup 
         POETRY_INSTALLER_PARALLEL=false
         poetry install --no-interaction --extras benchmark
-        cd ../../
-        cd rnd/autogpt_server
+        cd $HOME/AutoGPT/rnd/autogpt_server
         poetry install --no-interaction
     fi
 fi
